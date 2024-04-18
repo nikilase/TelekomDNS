@@ -1,0 +1,18 @@
+[general]
+show_debug = true
+
+[login]
+username = "<USERNAME>"
+password = "<PASSWORD>"
+
+[[entry]]
+domain = "example.com"
+typ = "TXT"
+prefix = "subdomain"
+ttl = "300"
+
+[[entry]]
+domain = "example.com"
+typ = "TXT"
+prefix = "*"
+ttl = "300"
