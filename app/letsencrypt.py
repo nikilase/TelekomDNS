@@ -1,17 +1,16 @@
 from time import sleep
 
 import click
-from selenium import webdriver
+from selenium.webdriver.remote.webdriver import WebDriver
 
-from app.interactive import login, set_entry, delete_entry, logout
+from app.api import login, set_entry, delete_entry, logout
 from app.config import USERNAME, PASSWORD, ENTRIES, root_log
 from app.tools import check_dns_txt_entry
 
 log = root_log.getChild("letsencrypt")
 
 
-def interactive_telekom():
-    br = webdriver.Edge()
+def letsencrypt_telekom(br: WebDriver):
     login(br, USERNAME, PASSWORD)
     log.info("Logged in")
     sleep(0.05)

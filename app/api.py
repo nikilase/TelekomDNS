@@ -6,12 +6,12 @@ from selenium.webdriver.remote.webdriver import WebDriver
 
 from app.config import root_log
 
-log = root_log.getChild("interactive")
+log = root_log.getChild("api")
 
 
 def login(br: WebDriver, username: str, password: str):
     # Login on the Webportal and go to the main page of the Homepagecenter
-    log.info(f"Logging in to {username}")
+    log.info(f"Logging in to {username} (might take a while)")
     br.implicitly_wait(5)
     br.get(
         "https://accounts.login.idm.telekom.com/oauth2/auth?scope=openid&response_type=code&approval_prompt=auto&redirect_uri=https%3A%2F%2Fhomepagecenter.telekom.de%2Ftypo3conf%2Fext%2Fcidaas%2Fcallback.php&client_id=10LIVESAM30000004901HOSTING0000000000000"
