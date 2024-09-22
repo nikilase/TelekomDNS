@@ -31,6 +31,10 @@ def login(br: WebDriver, username: str, password: str):
     log.debug(5)
     br.get("https://homepagecenter.telekom.de/index.php")
     log.debug(6)
+    cookie_accept = br.find_element(By.ID, "rejectAll")
+    cookie_accept.click()
+    br.get("https://homepagecenter.telekom.de/index.php")
+    sleep(2)
 
 
 def logout(br: WebDriver):
