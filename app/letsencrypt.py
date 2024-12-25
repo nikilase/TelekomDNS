@@ -25,7 +25,10 @@ def letsencrypt_telekom(br: WebDriver):
         prefix = entry["prefix"]
         ttl = entry["ttl"]
         content = input(f"Please enter your content for {typ} on {prefix}.{domain}:")
-        set_entry(br, domain, typ, prefix, ttl, content)
+        try:
+            set_entry(br, domain, typ, prefix, ttl, content)
+        except Exception as e:
+            print(f"Error while adding entry: {e}")
         while not check_dns_txt_entry(f"{prefix}.{domain}", content):
             sleep(1)
         sleep(0.05)
