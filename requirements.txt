@@ -1,4 +1,4 @@
 black
-click~=8.1.7
-selenium~=4.19.0
-dnspython~=2.6.1
+click~=8.1.8
+selenium~=4.29.0
+dnspython~=2.7.0

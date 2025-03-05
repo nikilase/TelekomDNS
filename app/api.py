@@ -1,5 +1,6 @@
 from time import sleep
 
+from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.remote.webdriver import WebDriver
@@ -17,22 +18,31 @@ def login(br: WebDriver, username: str, password: str):
         "https://accounts.login.idm.telekom.com/oauth2/auth?scope=openid&response_type=code&approval_prompt=auto&redirect_uri=https%3A%2F%2Fhomepagecenter.telekom.de%2Ftypo3conf%2Fext%2Fcidaas%2Fcallback.php&client_id=10LIVESAM30000004901HOSTING0000000000000"
     )
     log.debug(1)
-    user = br.find_element(By.ID, "username")
+    user = br.find_element(By.ID, "input-text-field-0")
     user.send_keys(username)
     log.debug(2)
+    # Locate the scale-button element first
     user_accept = br.find_element(By.ID, "pw_submit")
+    # Then locate the actual button within the scale-button element
     user_accept.click()
     log.debug(3)
-    pw = br.find_element(By.ID, "pw_pwd")
+    pw = br.find_element(By.ID, "input-text-field-0")
     pw.send_keys(password)
     log.debug(4)
     pw_accept = br.find_element(By.ID, "pw_submit")
     pw_accept.click()
     log.debug(5)
-    br.get("https://homepagecenter.telekom.de/index.php")
+    try:
+        no_passkey = br.find_element(By.ID, "dont_ask_again")
+        no_passkey.click()
+    except NoSuchElementException:
+        pass
     log.debug(6)
-    cookie_accept = br.find_element(By.ID, "rejectAll")
-    cookie_accept.click()
+    try:
+        cookie_accept = br.find_element(By.ID, "rejectAll")
+        cookie_accept.click()
+    except NoSuchElementException:
+        pass
     br.get("https://homepagecenter.telekom.de/index.php")
     sleep(2)
 
