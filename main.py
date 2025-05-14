@@ -92,6 +92,7 @@ def run_edge(headless=True):
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
     if headless:
         options.add_argument("--headless=new")
+        options.add_argument("--edge-skip-compat-layer-relaunch")
     br = webdriver.Edge(options=options)
     letsencrypt_telekom(br)
 
