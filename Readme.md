@@ -1,6 +1,6 @@
 # Python Telekom Homepagecenter Letsencrypt Bot
 
-***STILL WORK IN PROGRESS!***
+***Not further developed! May need changes if Telekom decides to change their Website layout again!***
 
 Python Script to do some basic usage of the Telekom Homepagecenter using selenium.
 
